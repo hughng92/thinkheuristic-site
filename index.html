@@ -324,7 +324,7 @@ nav .social svg { width: 1.4rem; height: 1.4rem; }
     </a>
     <a href="ep2/" style="display:block;background:rgba(16,19,26,0.9);border:1px solid rgba(230,169,60,0.25);border-radius:0.7rem;padding:1.1rem 1.3rem;margin-bottom:0.9rem;color:#F2F2F0;text-decoration:none;">
       <strong style="display:block;margin-bottom:0.25rem;">Ep2 · Why $1 makes you lie to yourself (but $20 doesn't)</strong>
-      <span style="color:#9aa0aa;font-size:0.875rem;">Cognitive dissonance, the doomsday cult, and the contested 2024 replication. Premieres Wednesday July 8.</span>
+      <span id="ep2-note" style="color:#9aa0aa;font-size:0.875rem;">Cognitive dissonance, the doomsday cult, and the contested 2024 replication. Premieres Wednesday July 8.</span>
     </a>
     <a href="stats/" style="display:block;background:rgba(16,19,26,0.9);border:1px solid rgba(255,255,255,0.12);border-radius:0.7rem;padding:1.1rem 1.3rem;color:#F2F2F0;text-decoration:none;">
       <strong style="display:block;margin-bottom:0.25rem;">Channel stats, live</strong>
@@ -558,6 +558,14 @@ nav .social svg { width: 1.4rem; height: 1.4rem; }
     }
   }, { threshold: 0.15 });
   observer.observe(sectionThreeInner);
+})();
+</script>
+<script>
+// Same post-premiere gate as /ep2; the Jul 8 pass rewrites this statically with the real URL.
+(function () {
+  if (Date.now() < Date.parse('2026-07-08T15:00:00Z')) return;
+  var n = document.getElementById('ep2-note');
+  if (n) n.textContent = 'Cognitive dissonance, the doomsday cult, and the contested 2024 replication. Watch + sources.';
 })();
 </script>
 </body>

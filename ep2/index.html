@@ -101,5 +101,17 @@
     <div>Heuristic. Think sharper. Get fooled less. A new cognitive bias, every Wednesday.</div>
   </footer>
 </div>
+<script>
+// Post-premiere bridge: the real watch URL exists only after Sunday's upload,
+// so this flips the banner to a channel CTA until the Jul 8 pass swaps in the ep1-style embed.
+(function () {
+  if (Date.now() < Date.parse('2026-07-08T15:00:00Z')) return;
+  var p = document.querySelector('.premiere');
+  if (!p) return;
+  p.innerHTML = '<div>Episode 2 is out now</div>' +
+    '<div class="when">The $1 lie, the doomsday cult, and the contested replication</div>' +
+    '<a class="cta" href="https://www.youtube.com/@thinkheuristic/videos">&#9654; Watch Episode 2</a>';
+})();
+</script>
 </body>
 </html>
