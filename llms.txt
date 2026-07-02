@@ -4,6 +4,7 @@
 
 New episode every Wednesday, with three Shorts a week cut from it. Every claim traces to a primary source listed under each video.
 
+- [Site home](https://heuristic.blog/): the landing page.
 - [YouTube channel](https://www.youtube.com/@thinkheuristic): all episodes and Shorts.
 - Episode companion articles live at /ep1, /ep2, and so on (one per episode, with the sources and the honest state of the science, including contested replications).
 - /stats: live channel statistics.
