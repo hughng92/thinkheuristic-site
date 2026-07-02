@@ -1,0 +1,13 @@
+# Heuristic
+
+> Heuristic is a weekly applied-psychology YouTube channel that takes apart one cognitive bias at a time using the actual research, not the meme version. Think sharper. Get fooled less.
+
+New episode every Wednesday, with three Shorts a week cut from it. Every claim traces to a primary source listed under each video.
+
+- [YouTube channel](https://www.youtube.com/@thinkheuristic): all episodes and Shorts.
+- Episode companion articles live at /ep1, /ep2, and so on (one per episode, with the sources and the honest state of the science, including contested replications).
+- /stats: live channel statistics.
+
+## Episodes so far
+- Ep1: Why Smart People Feel Dumb (The Dunning-Kruger Myth). The famous curve never appeared in the 1999 study, and a 2020 paper argues the effect is partly a statistical artifact.
+- Ep2: Why $1 Makes You Lie to Yourself (But $20 Doesn't). Cognitive dissonance, the Festinger and Carlsmith 1959 experiment, and the contested 2024 multilab replication.

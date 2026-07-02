@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Heuristic | Think sharper. Get fooled less.</title>
+<meta name="description" content="Heuristic takes apart one cognitive bias every week using the actual research, not the meme version. Dunning-Kruger, cognitive dissonance, sunk cost and more, ten cinematic minutes at a time." />
+<meta property="og:title" content="Heuristic | Think sharper. Get fooled less." />
+<meta property="og:description" content="One cognitive bias a week, built from the real studies, including the parts scientists still fight about." />
+<meta property="og:type" content="website" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Heuristic",
+  "description": "A weekly applied-psychology channel that takes apart one cognitive bias at a time using primary research.",
+  "sameAs": ["https://www.youtube.com/@thinkheuristic"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+body { font-family: 'Montserrat', sans-serif; background: #0C0E13; color: #F2F2F0; }
+
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+
+/* Scroll Video */
+#scroll-video-container {
+  position: fixed; inset: 0; z-index: -10;
+  background: #0C0E13; top: -20%;
+}
+#scroll-video-container canvas,
+#scroll-video-container video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+#scroll-video-container .overlay { position: absolute; inset: 0; background: rgba(6,8,12,0.35); }
+
+/* Particles */
+#particles-canvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 3;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+}
+nav .logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.25rem; color: #F2F2F0; letter-spacing: -0.025em; text-decoration: none; }
+nav .logo .bolt {
+  width: 1.7rem; height: 1.7rem; border-radius: 50%;
+  border: 2px solid #E6A93C; display: flex; align-items: center; justify-content: center;
+  background: #0A0C10;
+}
+nav .logo .bolt svg { width: 0.85rem; height: 0.85rem; fill: #E6A93C; }
+nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+nav .nav-links a { font-size: 0.875rem; color: #c8ccd4; text-decoration: none; transition: color 0.2s; }
+nav .nav-links a:hover { color: #fff; }
+nav .social { display: flex; align-items: center; gap: 1rem; }
+nav .social a { color: #c8ccd4; transition: color 0.2s; }
+nav .social a:hover { color: #E6A93C; }
+nav .social svg { width: 1.4rem; height: 1.4rem; }
+
+/* Hero */
+#hero {
+  position: relative; height: 100vh; width: 100%; display: flex; flex-direction: column;
+}
+#hero .gradient-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,8,12,0.75), transparent, transparent);
+}
+#hero .content {
+  position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end; text-align: center;
+  padding: 0 1.5rem 6rem;
+}
+#hero .subtitle { font-size: 0.875rem; color: #9aa0aa; margin-bottom: 1rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+#hero h1 { font-size: clamp(1.6rem, 5vw, 3.75rem); font-weight: 800; line-height: 1.15; max-width: 52rem; }
+#hero h1 .underlined {
+  position: relative; display: inline-block;
+}
+#hero h1 .underlined .line {
+  position: absolute; bottom: 0.25rem; left: 0; width: 100%; height: 12px;
+  background: #E6A93C; border-radius: 2px; opacity: 0.85;
+}
+#hero h1 .underlined span { position: relative; }
+#hero .ctas {
+  display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; justify-content: center;
+}
+#hero .code-box {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(16,19,26,0.85); border: 1px solid rgba(230,169,60,0.35);
+  border-radius: 0.5rem; padding: 0.875rem 2rem; text-decoration: none;
+}
+#hero .code-box .prompt { color: #E6A93C; font-family: monospace; font-size: 0.875rem; }
+#hero .code-box code { font-size: 0.875rem; color: #e5e7eb; font-family: monospace; }
+#hero .cta-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #E6A93C; color: #0A0C10; font-weight: 700; border-radius: 0.5rem;
+  padding: 0.875rem 2rem; font-size: 0.875rem; text-decoration: none; transition: background 0.2s;
+}
+#hero .cta-btn:hover { background: #f0c064; }
+#hero .bounce-arrow {
+  position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 2rem;
+}
+#hero .bounce-arrow svg { width: 1.5rem; height: 1.5rem; color: #6b7280; animation: bounce 1s infinite; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25%); }
+}
+
+/* Cards */
+#fixed-cards {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 4;
+  padding: 2rem 2.5rem; opacity: 0; pointer-events: none;
+}
+#fixed-cards .grid {
+  max-width: 72rem; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+}
+#fixed-cards .card h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+#fixed-cards .card h3 .amber { color: #E6A93C; }
+#fixed-cards .card p { color: #d5d8de; font-size: 0.875rem; line-height: 1.6; }
+
+/* Section 3 */
+#section-three {
+  position: relative; min-height: 100vh; display: flex; align-items: flex-end;
+  justify-content: center; padding: 0 2.5rem 8rem;
+}
+#section-three .inner {
+  position: relative; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  opacity: 0; transform: translateY(32px); filter: blur(8px);
+  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+}
+#section-three .inner.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+#section-three .inner p { color: #d5d8de; font-size: 1rem; margin-bottom: 0.75rem; }
+#section-three .inner h2 { font-size: clamp(1.875rem, 6vw, 4.25rem); font-weight: 800; }
+#section-three .inner h2 .amber { color: #E6A93C; }
+#section-three .inner .sub-cta {
+  margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #E6A93C; color: #0A0C10; font-weight: 700; border-radius: 0.5rem;
+  padding: 0.875rem 2rem; font-size: 0.875rem; text-decoration: none; transition: background 0.2s;
+}
+#section-three .inner .sub-cta:hover { background: #f0c064; }
+
+/* Content wrapper */
+#content { position: relative; z-index: 2; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav .nav-links { display: none; }
+  #hero .content { padding-bottom: 5rem; }
+  #hero h1 { font-size: 1.6rem; }
+  #hero .ctas { flex-direction: column; }
+  #fixed-cards .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  #fixed-cards { padding: 1.5rem 1rem; }
+  #section-three { padding-bottom: 5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Video Background (a Heuristic hero clip, self-hosted) -->
+<div id="scroll-video-container">
+  <canvas id="video-canvas"></canvas>
+  <video id="video-fallback" muted playsinline preload="auto"
+    src="assets/hero-loop.mp4"
+  ></video>
+  <div class="overlay"></div>
+</div>
+
+<!-- Particles -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Fixed Cards -->
+<div id="fixed-cards">
+  <div class="grid">
+    <div class="card">
+      <h3>The meme version is <span class="amber">wrong</span></h3>
+      <p>The famous Dunning-Kruger curve never appeared in the study. The $1 lie experiment just failed its largest replication, and scientists are fighting about it right now. We cover what the research actually says, including the contested parts.</p>
+    </div>
+    <div class="card">
+      <h3>Ten minutes, <span class="amber">one bias</span></h3>
+      <p>Every Wednesday: one cognitive bias, the real experiments behind it, cinematic visuals built for the idea, and one question that catches your own mind in the act.</p>
+    </div>
+    <div class="card">
+      <h3>Check <span class="amber">everything</span></h3>
+      <p>Every claim traces to a primary source, and the sources are listed under every video. That is the whole point. Think sharper. Get fooled less.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div style="display:flex;align-items:center;gap:2rem;">
+    <a class="logo" href="./">
+      <span class="bolt"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-2 8 10-13h-6l1-7z"/></svg></span>
+      <span>Heuristic</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://www.youtube.com/@thinkheuristic/videos">Episodes</a>
+      <a href="ep1/">Research notes</a>
+      <a href="stats/">Stats</a>
+    </div>
+  </div>
+  <div class="social">
+    <a href="https://www.youtube.com/@thinkheuristic" aria-label="Heuristic on YouTube"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div id="content">
+  <!-- Section 1: Hero -->
+  <section id="hero">
+    <div class="gradient-overlay"></div>
+    <div class="content">
+      <p class="subtitle">A new cognitive bias, every Wednesday</p>
+      <h1>
+        Think sharper.
+        <span class="underlined"><span class="line"></span><span>Get fooled less.</span></span>
+      </h1>
+      <div class="ctas">
+        <a class="code-box" href="https://www.youtube.com/@thinkheuristic">
+          <span class="prompt">&#9654;</span>
+          <code>youtube.com/@thinkheuristic</code>
+        </a>
+        <a href="https://www.youtube.com/@thinkheuristic?sub_confirmation=1" class="cta-btn">Subscribe on YouTube <span>&rarr;</span></a>
+      </div>
+    </div>
+    <div class="bounce-arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+    </div>
+  </section>
+
+  <!-- Spacer -->
+  <div style="height:150vh;"></div>
+
+  <!-- Cards Trigger Zone -->
+  <div id="cards-trigger" style="height:200vh;"></div>
+
+  <!-- Spacer -->
+  <div style="height:100vh;"></div>
+
+  <!-- Section 3 -->
+  <section id="section-three">
+    <div class="inner" id="section-three-inner">
+      <p>From the Dunning-Kruger myth to the $1 lie</p>
+      <h2>A new <span class="amber">bias</span>, every week.</h2>
+      <a class="sub-cta" href="https://www.youtube.com/@thinkheuristic?sub_confirmation=1">&#9654; Subscribe</a>
+    </div>
+  </section>
+
+  <!-- Research notes -->
+  <section id="notes" style="position:relative;z-index:10;padding:2rem 1.5rem 6rem;max-width:46rem;margin:0 auto;">
+    <p style="color:#E6A93C;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin-bottom:1.1rem;">Research notes, with sources</p>
+    <a href="ep1/" style="display:block;background:rgba(16,19,26,0.9);border:1px solid rgba(230,169,60,0.25);border-radius:0.7rem;padding:1.1rem 1.3rem;margin-bottom:0.9rem;color:#F2F2F0;text-decoration:none;">
+      <strong style="display:block;margin-bottom:0.25rem;">Ep1 · The most famous graph in psychology is fake</strong>
+      <span style="color:#9aa0aa;font-size:0.875rem;">The Mount Stupid curve never appeared in the 1999 study. What Dunning-Kruger actually shows. Watch + sources.</span>
+    </a>
+    <a href="ep2/" style="display:block;background:rgba(16,19,26,0.9);border:1px solid rgba(230,169,60,0.25);border-radius:0.7rem;padding:1.1rem 1.3rem;margin-bottom:0.9rem;color:#F2F2F0;text-decoration:none;">
+      <strong style="display:block;margin-bottom:0.25rem;">Ep2 · Why $1 makes you lie to yourself (but $20 doesn't)</strong>
+      <span style="color:#9aa0aa;font-size:0.875rem;">Cognitive dissonance, the doomsday cult, and the contested 2024 replication. Premieres Wednesday July 8.</span>
+    </a>
+    <a href="stats/" style="display:block;background:rgba(16,19,26,0.9);border:1px solid rgba(255,255,255,0.12);border-radius:0.7rem;padding:1.1rem 1.3rem;color:#F2F2F0;text-decoration:none;">
+      <strong style="display:block;margin-bottom:0.25rem;">Channel stats, live</strong>
+      <span style="color:#9aa0aa;font-size:0.875rem;">Daily snapshots of the channel's growth, in the open.</span>
+    </a>
+  </section>
+</div>
+
+<script>
+(function() {
+  // ===================== SCROLL VIDEO =====================
+  const VIDEO_URL = 'assets/hero-loop.mp4';
+  const canvas = document.getElementById('video-canvas');
+  const videoEl = document.getElementById('video-fallback');
+  const ctx = canvas.getContext('2d');
+  let frames = [];
+  let framesReady = false;
+  let lastFrameIndex = -1;
+  let videoSeeking = false;
+
+  function resizeCanvas() {
+    const dpr = Math.min(devicePixelRatio, 2);
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+    }
+    lastFrameIndex = -1;
+  }
+
+  async function extractFrames() {
+    try {
+      const response = await fetch(VIDEO_URL);
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      const video = document.createElement('video');
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.src = objectUrl;
+
+      await new Promise((resolve, reject) => {
+        video.onloadedmetadata = () => resolve();
+        video.onerror = () => reject();
+        setTimeout(() => reject(), 15000);
+      });
+
+      const scale = Math.min(1, 1280 / video.videoWidth);
+      const scaledWidth = Math.round(video.videoWidth * scale);
+      const scaledHeight = Math.round(video.videoHeight * scale);
+      const frameCount = Math.max(30, Math.min(120, Math.round(video.duration * 24)));
+
+      for (let i = 0; i < frameCount; i++) {
+        const time = (i / (frameCount - 1)) * (video.duration - 0.05);
+        video.currentTime = time;
+        await new Promise((resolve, reject) => {
+          const onSeeked = () => { video.removeEventListener('seeked', onSeeked); resolve(); };
+          video.addEventListener('seeked', onSeeked);
+          setTimeout(() => { video.removeEventListener('seeked', onSeeked); reject(); }, 3000);
+        });
+        const bitmap = await createImageBitmap(video, { resizeWidth: scaledWidth, resizeHeight: scaledHeight });
+        frames.push(bitmap);
+      }
+
+      if (frames.length > 0) {
+        framesReady = true;
+        canvas.style.visibility = 'visible';
+        videoEl.style.display = 'none';
+      }
+      URL.revokeObjectURL(objectUrl);
+    } catch(e) { /* fallback to video seeking */ }
+  }
+
+  function getScrollBounds() {
+    const vh = window.innerHeight;
+    return { start: vh * 0.5, end: document.documentElement.scrollHeight - vh };
+  }
+
+  function getProgress() {
+    const { start, end } = getScrollBounds();
+    const range = end - start;
+    if (range <= 0) return 0;
+    return Math.max(0, Math.min(1, (window.scrollY - start) / range));
+  }
+
+  function drawFrame(frame) {
+    const cw = canvas.width, ch = canvas.height;
+    const s = Math.max(cw / frame.width, ch / frame.height);
+    const dw = frame.width * s, dh = frame.height * s;
+    ctx.drawImage(frame, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }
+
+  function videoTick() {
+    const progress = getProgress();
+    if (framesReady && frames.length > 0) {
+      const idx = Math.round(progress * (frames.length - 1));
+      if (idx !== lastFrameIndex) {
+        lastFrameIndex = idx;
+        if (frames[idx]) drawFrame(frames[idx]);
+      }
+    } else if (videoEl.duration && isFinite(videoEl.duration) && videoEl.readyState >= 1) {
+      const target = progress * videoEl.duration;
+      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.001) {
+        videoSeeking = true;
+        videoEl.currentTime = target;
+      }
+    }
+    requestAnimationFrame(videoTick);
+  }
+
+  videoEl.addEventListener('seeked', () => { videoSeeking = false; });
+  videoEl.addEventListener('stalled', () => { videoSeeking = false; });
+  videoEl.addEventListener('loadeddata', () => { videoEl.currentTime = 0; });
+  canvas.style.visibility = 'hidden';
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(videoTick);
+  extractFrames();
+
+  // ===================== PARTICLES (warm ember tint) =====================
+  const pCanvas = document.getElementById('particles-canvas');
+  const pCtx = pCanvas.getContext('2d');
+  let particles = [];
+
+  function resizeParticles() {
+    pCanvas.width = window.innerWidth;
+    pCanvas.height = window.innerHeight;
+    createParticles();
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((pCanvas.width * pCanvas.height) / 12000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * pCanvas.width,
+        y: Math.random() * pCanvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.15,
+        warm: Math.random() < 0.35
+      });
+    }
+  }
+
+  function animateParticles() {
+    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = pCanvas.width;
+      if (p.x > pCanvas.width) p.x = 0;
+      if (p.y < 0) p.y = pCanvas.height;
+      if (p.y > pCanvas.height) p.y = 0;
+      pCtx.beginPath();
+      pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      pCtx.fillStyle = p.warm ? `rgba(230,169,60,${p.opacity})` : `rgba(242,242,240,${p.opacity})`;
+      pCtx.fill();
+    }
+    requestAnimationFrame(animateParticles);
+  }
+
+  resizeParticles();
+  window.addEventListener('resize', resizeParticles);
+  animateParticles();
+
+  // ===================== HERO FADE =====================
+  function updateHeroOpacity() {
+    const fade = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.3));
+    document.getElementById('hero').style.opacity = fade;
+  }
+  window.addEventListener('scroll', updateHeroOpacity, { passive: true });
+
+  // ===================== FIXED CARDS =====================
+  const fixedCards = document.getElementById('fixed-cards');
+  const cardsGrid = fixedCards.querySelector('.grid');
+
+  function tickCards() {
+    const trigger = document.getElementById('cards-trigger');
+    const rect = trigger.getBoundingClientRect();
+    const triggerTop = rect.top + window.scrollY;
+    const triggerHeight = rect.height;
+    const scrollY = window.scrollY;
+    const vh = window.innerHeight;
+
+    const start = triggerTop - vh * 0.5;
+    const end = triggerTop + triggerHeight - vh * 0.3;
+    const range = end - start;
+
+    let progress = range > 0 ? (scrollY - start) / range : 0;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const isActive = scrollY >= start - vh * 0.2 && scrollY <= end + vh * 0.3;
+    const fadeIn = Math.min(1, Math.max(0, (scrollY - (start - vh * 0.2)) / (vh * 0.2)));
+    const fadeOut = Math.min(1, Math.max(0, (end + vh * 0.3 - scrollY) / (vh * 0.3)));
+    const containerOpacity = isActive ? Math.min(fadeIn, fadeOut) : 0;
+
+    fixedCards.style.opacity = containerOpacity;
+    fixedCards.style.pointerEvents = containerOpacity > 0.1 ? 'auto' : 'none';
+
+    const isMobile = window.innerWidth < 768;
+    const revealPct = progress * 130;
+    if (isMobile) {
+      cardsGrid.style.maskImage = `linear-gradient(to bottom, black ${revealPct}%, transparent ${revealPct + 20}%)`;
+      cardsGrid.style.webkitMaskImage = `linear-gradient(to bottom, black ${revealPct}%, transparent ${revealPct + 20}%)`;
+    } else {
+      cardsGrid.style.maskImage = `linear-gradient(to right, black ${revealPct}%, transparent ${revealPct + 15}%)`;
+      cardsGrid.style.webkitMaskImage = `linear-gradient(to right, black ${revealPct}%, transparent ${revealPct + 15}%)`;
+    }
+
+    requestAnimationFrame(tickCards);
+  }
+  requestAnimationFrame(tickCards);
+
+  // ===================== SECTION 3 INTERSECTION =====================
+  const sectionThreeInner = document.getElementById('section-three-inner');
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      sectionThreeInner.classList.add('visible');
+      observer.unobserve(sectionThreeInner);
+    }
+  }, { threshold: 0.15 });
+  observer.observe(sectionThreeInner);
+})();
+</script>
+</body>
+</html>
